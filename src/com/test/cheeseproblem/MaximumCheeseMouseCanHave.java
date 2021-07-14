@@ -1,4 +1,4 @@
-package com.test.cheezeproblem;
+package com.test.cheeseproblem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.function.IntPredicate;
 import java.util.stream.Stream;
 
-public class MaximumCheezeMouseCanHave {
+public class MaximumCheeseMouseCanHave {
 
     private static int maxSum = Integer.MIN_VALUE;
     private static final int NUMBER_OF_TEST_CASES = 200;
@@ -29,10 +29,10 @@ public class MaximumCheezeMouseCanHave {
             int n = getAndValidateInputParameter(NUMBER_OF_MAX_INPUTS_IN_TEST_CASE, "Value of n is expected between 1 and 1000 both inclusive");
             a.add(getTestCaseArrayFromInput(n));
         }
-        // calculating the max cheeze that mouse can have for each test-case one by one
+        // calculating the max cheese that mouse can have for each test-case one by one
         for (int i = 0; i < T; i++) {
             maxSum = Integer.MIN_VALUE;
-            maxCheezeMouseCanHave(a.get(i), 0);
+            maxCheeseMouseCanHave(a.get(i), 0);
             System.out.println(maxSum);
         }
     }
@@ -40,7 +40,7 @@ public class MaximumCheezeMouseCanHave {
     private static int getAndValidateInputParameter(int upperBoundary, String exceptionMessage) {
         int T = getIntInput();
         if (!(T >= 1 && T <= upperBoundary)) {
-            throw new CheezeProblemInputDataMismatchException(exceptionMessage);
+            throw new CheeseProblemInputDataMismatchException(exceptionMessage);
         }
         return T;
     }
@@ -83,13 +83,13 @@ public class MaximumCheezeMouseCanHave {
 
     private static void validateIfAllInputDataForTestCaseIsValid(int size, String[] inputArrStr, int[] inputArr) {
         if (inputArrStr.length != size) {
-            throw new CheezeProblemInputDataMismatchException("Size of array does not match the expected size for this input.");
+            throw new CheeseProblemInputDataMismatchException("Size of array does not match the expected size for this input.");
         } else if (inputArr.length != inputArrStr.length) {
-            throw new CheezeProblemInputDataMismatchException("Some inputs have been filtered out as they could not meet filter conditions.");
+            throw new CheeseProblemInputDataMismatchException("Some inputs have been filtered out as they could not meet filter conditions.");
         }
     }
 
-    private static void maxCheezeMouseCanHave(int[] subList, int count) {
+    private static void maxCheeseMouseCanHave(int[] subList, int count) {
         // if arr is null or empty , then updating the current max weight count if it is
         // less than maxSum i.e already calculated sum considering different options
         if (Objects.isNull(subList) || subList.length == 0) {
@@ -99,20 +99,20 @@ public class MaximumCheezeMouseCanHave {
             // if sub-array size becomes 2 , choosing the max from available 2 options
             if (subList.length == 2) {
                 count += Math.max(subList[0], subList[1]);
-                maxCheezeMouseCanHave(null, count);
+                maxCheeseMouseCanHave(null, count);
             } else if (subList.length == 1) { // if sub-array size becomes 1, choose
                 count += subList[0];
-                maxCheezeMouseCanHave(null, count);
+                maxCheeseMouseCanHave(null, count);
             } else {
                 // dividing arr to sub-array considering 0th index as 1st element in the path and recursively
                 // calling it till there is 0 element left in the sub-array
                 int[] subSubList = Arrays.copyOfRange(subList, 2, subList.length);
-                maxCheezeMouseCanHave(subSubList, count + subList[0]);
+                maxCheeseMouseCanHave(subSubList, count + subList[0]);
 
                 // dividing arr to sub-array considering 1st index as 1st element in the path and recursively
                 // calling it till there is 0 element left in the sub-array
                 int[] subList2 = Arrays.copyOfRange(subList, 3, subList.length);
-                maxCheezeMouseCanHave(subList2, count + subList[1]);
+                maxCheeseMouseCanHave(subList2, count + subList[1]);
             }
         }
     }
